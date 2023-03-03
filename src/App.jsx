@@ -1,5 +1,5 @@
 // npm modules
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 
 // page components
@@ -15,12 +15,14 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
+import * as projectService from './services/projectService'
 
 // styles
 import './App.css'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
+  const [projects, setProjects] = useState([])
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -33,19 +35,37 @@ const App = () => {
     setUser(authService.getUser())
   }
 
+  const handleGetProjects = async(userId) => {
+    const projects = await projectService.showProjects(userId)
+    setProjects(projects)
+  }
+
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
+      
       <Routes>
-        <Route path="/" element={<Landing user={user} />} />
+
+        <Route 
+          path="/" 
+          element={
+            <Landing user={user} handleGetProjects={handleGetProjects} />
+          } 
+        />
+
         <Route
           path="/signup"
           element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
         />
+
         <Route
           path="/login"
-          element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
+          element={
+            <Login handleSignupOrLogin={handleSignupOrLogin} />
+          }
         />
+
         <Route
           path="/profiles"
           element={
@@ -54,6 +74,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/change-password"
           element={
@@ -62,6 +83,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
       </Routes>
     </>
   )
