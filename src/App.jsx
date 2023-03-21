@@ -8,6 +8,7 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import AddProject from './pages/AddProject/AddProject'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -42,7 +43,7 @@ const App = () => {
 
 
   return (
-    <>
+    <div className='bg-slate-100 h-screen'>
       <NavBar user={user} handleLogout={handleLogout} />
       
       <Routes>
@@ -66,6 +67,11 @@ const App = () => {
           }
         />
 
+        <Route 
+          path="/addProject"
+          element={<AddProject />}
+        />
+
         <Route
           path="/profiles"
           element={
@@ -85,7 +91,7 @@ const App = () => {
         />
 
       </Routes>
-    </>
+    </div>
   )
 }
 

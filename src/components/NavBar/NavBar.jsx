@@ -1,19 +1,21 @@
 import { Link } from 'react-router-dom'
 
 const NavBar = ({ user, handleLogout }) => {
+  const buttonStyle = 'p-3 rounded hover:bg-slate-300 transition duration-900'
   return (
-    <nav>
+    <nav className='font-light'>
       {user ?
-        <ul>
-          <li>Welcome, {user.name}</li>
-          <li><Link to="/profiles">Profiles</Link></li>
-          <li><Link to="" onClick={handleLogout}>LOG OUT</Link></li>
-          <li><Link to="/change-password">Change Password</Link></li>
+        <ul className='flex bg-slate-200 p-5'>
+          <li className='flex-1 pl-5'>Welcome, {user.name}</li>
+          <li className='flex-1'><Link to="/profiles" className={buttonStyle}>Profiles</Link></li>
+          <li className='flex-1'><Link to="" onClick={handleLogout} className={buttonStyle}>LOG OUT</Link></li>
+          <li className='flex-1'><Link to="/change-password" className={buttonStyle}>Change Password</Link></li>
+          <li className='pr-5'><Link to="/addProject"  className={buttonStyle}>Add Project</Link></li>
         </ul>
       :
-        <ul>
-          <li><Link to="/login">Log In</Link></li>
-          <li><Link to="/signup">Sign Up</Link></li>
+        <ul className='flex p-5 bg-slate-200'>
+          <li className='flex-1'><Link to="/login" className={buttonStyle}>Log In</Link></li>
+          <li><Link to="/signup" className={buttonStyle}>Sign Up</Link></li>
         </ul>
       }
     </nav>

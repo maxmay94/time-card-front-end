@@ -6,7 +6,7 @@ const Landing = ({ user, projects }) => {
   console.log(user)
 
   return (
-    <main className={styles.container}>
+    <main className='p-10 text-center font-black text-4xl'>
       <h1>hello, {user ? user.name : 'friend'}</h1>
       {
         projects &&
