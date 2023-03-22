@@ -7,10 +7,10 @@ const NavBar = ({ user, handleLogout }) => {
       {user ?
         <ul className='flex bg-slate-200 p-5'>
           <li className='flex-1 pl-5'>Welcome, {user.name}</li>
-          <li className='flex-1'><Link to="/profiles" className={buttonStyle}>Profiles</Link></li>
-          <li className='flex-1'><Link to="" onClick={handleLogout} className={buttonStyle}>LOG OUT</Link></li>
+          <li className='flex-1'><Link to="/" className={buttonStyle}>Home</Link></li>
+          <li className='flex-1'><Link to="/addProject"  className={buttonStyle}>Add Project</Link></li>
           <li className='flex-1'><Link to="/change-password" className={buttonStyle}>Change Password</Link></li>
-          <li className='pr-5'><Link to="/addProject"  className={buttonStyle}>Add Project</Link></li>
+          <li className='pr-5'><Link to="" onClick={handleLogout} className={buttonStyle}>Log Out</Link></li>
         </ul>
       :
         <ul className='flex p-5 bg-slate-200'>

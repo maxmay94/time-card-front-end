@@ -36,10 +36,20 @@ const App = () => {
     setUser(authService.getUser())
   }
 
-  const handleGetProjects = async(userId) => {
-    const projects = await projectService.showProjects(userId)
+  const handleShowProjects = async(user) => {
+    const projects = await projectService.showProjects(user)
     setProjects(projects)
   }
+
+  const handleAddProject = async(user, project) => {
+    const newProject = await projectService.addProject(user, project)
+    console.log(newProject)
+  }
+
+  useEffect(() => {
+    if(user) handleShowProjects(user)
+    else setProjects([])
+  }, [user])
 
 
   return (
@@ -51,7 +61,7 @@ const App = () => {
         <Route 
           path="/" 
           element={
-            <Landing user={user} handleGetProjects={handleGetProjects} />
+            <Landing user={user} handleShowProjects={handleShowProjects} projects={projects} />
           } 
         />
 
@@ -69,7 +79,11 @@ const App = () => {
 
         <Route 
           path="/addProject"
-          element={<AddProject />}
+          element={
+            <ProtectedRoute user={user}>
+              <AddProject user={user} handleAddProject={handleAddProject} />
+            </ProtectedRoute>
+          }
         />
 
         <Route

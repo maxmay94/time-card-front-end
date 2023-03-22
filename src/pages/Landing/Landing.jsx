@@ -1,21 +1,22 @@
-import { useEffect } from 'react'
-import styles from './Landing.module.css'
+import { useEffect } from "react"
 
 const Landing = ({ user, projects }) => {
 
-  console.log(user)
+  useEffect(() => { 
+    
+  }, [user])
 
   return (
-    <main className='p-10 text-center font-black text-4xl'>
-      <h1>hello, {user ? user.name : 'friend'}</h1>
+    <main className='p-10 text-center font-black text-6xl'>
+      <h1>hello {user ? user.name + `, these are you current projects.` : 'friend'}</h1>
       {
         projects &&
-        <div>     
-          <h2>Projects</h2>
-          <ul>
+        <div className=''>     
+          <ul className='m-5'>
             {projects.map((project) => (
-              <li key={project._id}>
-                <h1>{project.name}</h1>
+              <li key={project._id} className='p-5'>
+                <h1 className='text-4xl'>{project.name}</h1>
+                <p className='text-xl'>{project.description}</p>
               </li>
             ))}
           </ul>
