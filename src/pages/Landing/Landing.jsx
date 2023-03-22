@@ -10,7 +10,7 @@ const Landing = ({ user, projects, deleteProject }) => {
 
   return (
     <main className='p-10 text-center font-black text-6xl'>
-      <h1>hello {user ? user.name + `, these are you current projects.` : 'friend'}</h1>
+      <h1 className="drop-shadow-md">hello {user ? user.name + `, these are you current projects.` : 'friend'}</h1>
       {
         projects &&
         <div className='my-10'>     

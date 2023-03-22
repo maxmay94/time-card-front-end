@@ -1,8 +1,7 @@
 export const ProjectCard = ({ user, project, deleteProject }) => {
-  console.log('PID: ', project.name, project._id)
 
   return(
-    <li key={project._id} className='p-8 m-5 bg-slate-200 hover:bg-slate-300 transition duration-700 rounded text-left flex'>
+    <li className='p-8 m-5 bg-slate-200 hover:bg-slate-300 transition duration-700 rounded text-left flex'>
       <div className="flex-1">
         <h1 className='text-4xl'>{project.name}</h1>
         <p className='text-xl'>{project.description}</p>
