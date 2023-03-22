@@ -16,7 +16,12 @@ const Landing = ({ user, projects, deleteProject }) => {
         <div className='my-10'>     
           <ul className='m-5 mx-auto w-4/5'>
             {projects.map((project) => (
-              <ProjectCard project={project} key={project._id} deleteProject={deleteProject}/>
+              <ProjectCard 
+                key={project._id} 
+                deleteProject={deleteProject}
+                project={project} 
+                user={user}
+              />
             ))}
           </ul>
         </div>

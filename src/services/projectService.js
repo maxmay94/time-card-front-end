@@ -32,17 +32,19 @@ export const addProject = async(user, project) => {
   }
 }
 
-export const deleteProject = async(projectId) => {
-  try{
-    await fetch(`${BASE_URL}/${projectId}`, {
-      method: 'DELETE',
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `Bearer ${tokenService.getToken()}`
-      }
-    })
-  } catch(err) {
-    throw err
+export const deleteProject = async(user, project) => {
+  if(user.profile === project.profile) {
+    try{
+      await fetch(`${BASE_URL}/${project._id}`, {
+        method: 'DELETE',
+        headers: {
+          'content-type': 'application/json',
+          Authorization: `Bearer ${tokenService.getToken()}`
+        }
+      })
+    } catch(err) {
+      throw err
+    }
   }
 }
 

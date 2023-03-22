@@ -48,6 +48,7 @@ const App = () => {
   }
 
   const handleDeleteProject = async(user, projectID) => {
+    console.log('delete project', projectID)
     try{
       await projectService.deleteProject(user, projectID)
       const projectData = await projectService.showProjects(user)

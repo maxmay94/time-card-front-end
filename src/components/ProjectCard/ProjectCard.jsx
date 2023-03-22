@@ -1,4 +1,5 @@
-export const ProjectCard = ({ project, deleteProject }) => {
+export const ProjectCard = ({ user, project, deleteProject }) => {
+  console.log('PID: ', project.name, project._id)
 
   return(
     <li key={project._id} className='p-8 m-5 bg-slate-200 hover:bg-slate-300 transition duration-700 rounded text-left flex'>
@@ -12,7 +13,7 @@ export const ProjectCard = ({ project, deleteProject }) => {
         
         <button 
           className="bg-red-500 hover:bg-red-600 transition duration-700 p-3 rounded mx-3"
-          onClick={() => deleteProject(project._id)}
+          onClick={() => deleteProject(user, project)}
         >
           Delete
         </button>
