@@ -43,7 +43,18 @@ const App = () => {
 
   const handleAddProject = async(user, project) => {
     const newProject = await projectService.addProject(user, project)
-    console.log(newProject)
+    const projectData = await projectService.showProjects(user)
+    setProjects(projectData)    
+  }
+
+  const handleDeleteProject = async(user, projectID) => {
+    try{
+      await projectService.deleteProject(user, projectID)
+      const projectData = await projectService.showProjects(user)
+      setProjects(projectData)    
+    } catch(err) {
+      throw err
+    }
   }
 
   useEffect(() => {
@@ -53,7 +64,7 @@ const App = () => {
 
 
   return (
-    <div className='bg-slate-100 h-screen'>
+    <div className='bg-slate-100 h-fit'>
       <NavBar user={user} handleLogout={handleLogout} />
       
       <Routes>
@@ -61,7 +72,12 @@ const App = () => {
         <Route 
           path="/" 
           element={
-            <Landing user={user} handleShowProjects={handleShowProjects} projects={projects} />
+            <Landing 
+              user={user} 
+              handleShowProjects={handleShowProjects} 
+              projects={projects} 
+              deleteProject={handleDeleteProject}
+            />
           } 
         />
 

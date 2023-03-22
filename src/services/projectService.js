@@ -32,3 +32,17 @@ export const addProject = async(user, project) => {
   }
 }
 
+export const deleteProject = async(projectId) => {
+  try{
+    await fetch(`${BASE_URL}/${projectId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${tokenService.getToken()}`
+      }
+    })
+  } catch(err) {
+    throw err
+  }
+}
+
