@@ -16,7 +16,6 @@ const AddProject = ( props ) => {
   }
 
   const handleSubmit = (e) => {
-    console.log('USER PROFILE ---> ',props.user.profile)
     e.preventDefault()
     props.handleAddProject(props.user, formData)
     navigate('/')

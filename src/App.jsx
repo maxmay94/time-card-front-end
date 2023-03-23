@@ -42,13 +42,20 @@ const App = () => {
   }
 
   const handleAddProject = async(user, project) => {
-    const newProject = await projectService.addProject(user, project)
+    await projectService.addProject(user, project)
     const projectData = await projectService.showProjects(user)
     setProjects(projectData)    
   }
 
+  const handleClockIn = async(user, project) => {
+    await projectService.clockIn(user, project)
+  }
+
+  const handleClockOut = async(user, project) => {
+    await projectService.clockOut(user, project)
+  }
+
   const handleDeleteProject = async(user, projectID) => {
-    console.log('delete project', projectID)
     try{
       await projectService.deleteProject(user, projectID)
       const projectData = await projectService.showProjects(user)
@@ -78,6 +85,8 @@ const App = () => {
               handleShowProjects={handleShowProjects} 
               projects={projects} 
               deleteProject={handleDeleteProject}
+              clockIn={handleClockIn}
+              clockOut={handleClockOut}
             />
           } 
         />

@@ -48,3 +48,51 @@ export const deleteProject = async(user, project) => {
   }
 }
 
+export const clockIn = async(user, project) => {
+
+  console.log('PROJECT SERVICE ---> CLOCK IN: ', project.name, dateTime())
+  try {
+    const res = await fetch(`${BASE_URL}/clock-in/${project._id}`, {
+      method: 'POST',
+      headers: { 
+        'content-type': 'application/json' ,
+        Authorization: `Bearer ${tokenService.getToken()}`
+      },
+      body: JSON.stringify({
+        in: dateTime(),
+      }),
+    })
+    const data = await res.json()
+    return data
+  } catch(err) {
+    throw err
+  }
+}
+export const clockOut = async(user, project) => {
+
+  console.log('PROJECT SERVICE ---> CLOCK OUT: ', project.name, dateTime())
+  try {
+    const res = await fetch(`${BASE_URL}/clock-out/${project._id}`, {
+      method: 'POST',
+      headers: { 
+        'content-type': 'application/json' ,
+        Authorization: `Bearer ${tokenService.getToken()}`
+      },
+      body: JSON.stringify({
+        out: dateTime(),
+      }),
+    })
+    const data = await res.json()
+    return data
+  } catch(err) {
+    throw err
+  }
+}
+
+
+const dateTime = () => {
+  let today = new Date();
+  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  return date +' '+ time;
+}

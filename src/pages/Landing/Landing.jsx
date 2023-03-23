@@ -2,14 +2,14 @@ import { useEffect } from "react"
 
 import { ProjectCard } from "../../components/ProjectCard/ProjectCard"
 
-const Landing = ({ user, projects, deleteProject }) => {
+const Landing = ({ user, projects, deleteProject, clockIn, clockOut }) => {
 
   useEffect(() => { 
     
   }, [user, projects])
 
   return (
-    <main className='p-10 text-center font-black text-6xl'>
+    <main className='p-10 text-center font-black text-7xl'>
       <h1 className="drop-shadow-md">hello {user ? user.name + `, these are you current projects.` : 'friend'}</h1>
       {
         projects &&
@@ -21,6 +21,8 @@ const Landing = ({ user, projects, deleteProject }) => {
                 deleteProject={deleteProject}
                 project={project} 
                 user={user}
+                clockIn={clockIn}
+                clockOut={clockOut}
               />
             ))}
           </ul>
